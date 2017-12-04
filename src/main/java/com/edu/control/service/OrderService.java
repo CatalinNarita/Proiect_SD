@@ -21,7 +21,7 @@ public class OrderService {
     private OrderDTOMapper mapper = OrderDTOMapper.INSTANCE;
 
     public OrderDTO getOrderById(Long id) {
-        Order order = orderDAO.findOne(id);
+        //Order order = orderDAO.findOne(id);
         return mapper.mapToDto(orderDAO.findOne(id));
     }
 

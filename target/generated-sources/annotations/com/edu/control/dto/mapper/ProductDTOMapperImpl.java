@@ -2,14 +2,17 @@ package com.edu.control.dto.mapper;
 
 import com.edu.control.dto.ProductDTO;
 import com.edu.entity.Product;
+import com.edu.entity.ProductSpec;
 import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2017-12-04T14:34:35+0200",
+    date = "2017-12-04T17:37:04+0200",
     comments = "version: 1.2.0.Final, compiler: javac, environment: Java 1.8.0_131 (Oracle Corporation)"
 )
 public class ProductDTOMapperImpl implements ProductDTOMapper {
+
+    private final ProductSpec productSpec = new ProductSpec();
 
     @Override
     public ProductDTO mapToDto(Product product) {
@@ -34,7 +37,7 @@ public class ProductDTOMapperImpl implements ProductDTOMapper {
             return null;
         }
 
-        Product product = new Product();
+        Product product = productSpec.getProduct();
 
         product.setId( productDTO.getId() );
         product.setName( productDTO.getName() );

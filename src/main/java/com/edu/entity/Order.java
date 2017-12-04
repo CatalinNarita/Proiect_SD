@@ -28,13 +28,13 @@ public class Order implements Serializable{
     @Column(name = "total_price")
     private Double totalPrice;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    /*@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinTable(name = "order_item",
             joinColumns = {@JoinColumn(name = "id_order", nullable = false) },
             inverseJoinColumns = {@JoinColumn(name = "id_item", nullable = false)}
     )
     @JsonBackReference(value = "item_ref")
-    private List<Item> items;
+    private List<Item> items;*/
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_id")
@@ -42,11 +42,11 @@ public class Order implements Serializable{
 
     public Order(){}
 
-    public Order(String address, Timestamp orderDate, Double totalPrice, List<Item> items, User user) {
+    public Order(String address, Timestamp orderDate, Double totalPrice/*, List<Item> items*/, User user) {
         this.address = address;
         this.orderDate = orderDate;
         this.totalPrice = totalPrice;
-        this.items = items;
+        //this.items = items;
         this.user = user;
     }
 
@@ -90,11 +90,11 @@ public class Order implements Serializable{
         this.user = user;
     }
 
-    public List<Item> getItems() {
+    /*public List<Item> getItems() {
         return items;
     }
 
     public void setItems(List<Item> items) {
         this.items = items;
-    }
+    }*/
 }

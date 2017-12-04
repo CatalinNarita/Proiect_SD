@@ -27,7 +27,9 @@ public class CartService {
     }
 
     public void updateCart(CartDTO cartDTO) {
+        Cart cart = cartDAO.findOne(cartDTO.getId());
 
+        cart.setItems(cartDTO.getItems());
     }
 
 }
