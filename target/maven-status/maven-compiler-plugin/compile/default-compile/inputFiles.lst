@@ -1,11 +1,13 @@
 C:\Users\naritc\Desktop\sd\src\main\java\com\edu\entity\ProductSpec.java
 C:\Users\naritc\Desktop\sd\src\main\java\com\edu\control\service\OrderService.java
 C:\Users\naritc\Desktop\sd\src\main\java\com\edu\control\dao\OrderDAO.java
+C:\Users\naritc\Desktop\sd\src\main\java\com\edu\entity\Item.java
 C:\Users\naritc\Desktop\sd\src\main\java\com\edu\boundary\ProductResource.java
 C:\Users\naritc\Desktop\sd\src\main\java\com\edu\control\dto\CartDTO.java
 C:\Users\naritc\Desktop\sd\src\main\java\com\edu\boundary\RoleResource.java
 C:\Users\naritc\Desktop\sd\src\main\java\com\edu\entity\SmartphoneSpec.java
 C:\Users\naritc\Desktop\sd\src\main\java\com\edu\control\dao\CartDAO.java
+C:\Users\naritc\Desktop\sd\src\main\java\com\edu\control\dto\ItemDTO.java
 C:\Users\naritc\Desktop\sd\src\main\java\com\edu\control\dto\mapper\CartDTOMapper.java
 C:\Users\naritc\Desktop\sd\src\main\java\com\edu\entity\LaptopSpec.java
 C:\Users\naritc\Desktop\sd\src\main\java\com\edu\control\dto\OrderDTO.java
@@ -21,11 +23,14 @@ C:\Users\naritc\Desktop\sd\src\main\java\com\edu\boundary\OrderResource.java
 C:\Users\naritc\Desktop\sd\src\main\java\com\edu\boundary\CartResource.java
 C:\Users\naritc\Desktop\sd\src\main\java\com\edu\control\service\RoleService.java
 C:\Users\naritc\Desktop\sd\src\main\java\com\Application.java
+C:\Users\naritc\Desktop\sd\src\main\java\com\edu\boundary\ItemResource.java
 C:\Users\naritc\Desktop\sd\src\main\java\com\edu\config\HibernateConfig.java
 C:\Users\naritc\Desktop\sd\src\main\java\com\edu\control\service\ProductService.java
 C:\Users\naritc\Desktop\sd\src\main\java\com\edu\control\dao\UserDAO.java
 C:\Users\naritc\Desktop\sd\src\main\java\com\edu\control\dao\ProductDAO.java
+C:\Users\naritc\Desktop\sd\src\main\java\com\edu\control\service\ItemService.java
 C:\Users\naritc\Desktop\sd\src\main\java\com\edu\entity\GuaranteePeriodEnum.java
+C:\Users\naritc\Desktop\sd\src\main\java\com\edu\control\dao\ItemDAO.java
 C:\Users\naritc\Desktop\sd\src\main\java\com\edu\control\dto\mapper\ProductDTOMapper.java
 C:\Users\naritc\Desktop\sd\src\main\java\com\edu\entity\MonitorSpec.java
 C:\Users\naritc\Desktop\sd\src\main\java\com\edu\control\dao\RoleDAO.java
@@ -35,5 +40,6 @@ C:\Users\naritc\Desktop\sd\src\main\java\com\edu\control\dto\UserDTO.java
 C:\Users\naritc\Desktop\sd\src\main\java\com\edu\control\dto\mapper\OrderDTOMapper.java
 C:\Users\naritc\Desktop\sd\src\main\java\com\edu\entity\User.java
 C:\Users\naritc\Desktop\sd\src\main\java\com\edu\control\dto\RoleDTO.java
+C:\Users\naritc\Desktop\sd\src\main\java\com\edu\control\dto\mapper\ItemDTOMapper.java
 C:\Users\naritc\Desktop\sd\src\main\java\com\edu\entity\ColourEnum.java
 C:\Users\naritc\Desktop\sd\src\main\java\com\edu\entity\Order.java

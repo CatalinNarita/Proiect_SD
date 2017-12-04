@@ -29,6 +29,9 @@ public class MonitorSpec implements Serializable {
     @Column(name = "aspect_ratio")
     private String aspectRatio;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private ProductSpec productSpec;
+
     public MonitorSpec() {
     }
 
@@ -39,6 +42,7 @@ public class MonitorSpec implements Serializable {
         this.resolution = resolution;
         this.colour = colour;
         this.aspectRatio = aspectRatio;
+        this.productSpec = productSpec;
     }
 
     public Long getId() {
@@ -95,5 +99,41 @@ public class MonitorSpec implements Serializable {
 
     public void setAspectRatio(String aspectRatio) {
         this.aspectRatio = aspectRatio;
+    }
+
+    public ProductSpec getProductSpec() {
+        return productSpec;
+    }
+
+    public void setProductSpec(ProductSpec productSpec) {
+        this.productSpec = productSpec;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        MonitorSpec that = (MonitorSpec) o;
+
+        if (!producer.equals(that.producer)) return false;
+        if (guarantee != that.guarantee) return false;
+        if (!diagonal.equals(that.diagonal)) return false;
+        if (!resolution.equals(that.resolution)) return false;
+        if (colour != that.colour) return false;
+        if (!aspectRatio.equals(that.aspectRatio)) return false;
+        return productSpec.equals(that.productSpec);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = producer.hashCode();
+        result = 31 * result + guarantee.hashCode();
+        result = 31 * result + diagonal.hashCode();
+        result = 31 * result + resolution.hashCode();
+        result = 31 * result + colour.hashCode();
+        result = 31 * result + aspectRatio.hashCode();
+        result = 31 * result + productSpec.hashCode();
+        return result;
     }
 }

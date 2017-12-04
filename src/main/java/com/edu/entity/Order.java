@@ -1,6 +1,7 @@
 package com.edu.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -27,7 +28,12 @@ public class Order implements Serializable{
     @Column(name = "total_price")
     private Double totalPrice;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "orders", cascade = CascadeType.MERGE)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinTable(name = "order_item",
+            joinColumns = {@JoinColumn(name = "id_order", nullable = false) },
+            inverseJoinColumns = {@JoinColumn(name = "id_item", nullable = false)}
+    )
+    @JsonBackReference(value = "item_ref")
     private List<Item> items;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)

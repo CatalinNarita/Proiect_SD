@@ -23,8 +23,8 @@ public class Product implements Serializable {
     @Column
     private Double price;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "product_spec_id")
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "product_spec_id", referencedColumnName = "id")
     private ProductSpec productSpec;
 
     public Product() {
@@ -75,5 +75,27 @@ public class Product implements Serializable {
 
     public void setProductSpec(ProductSpec productSpec) {
         this.productSpec = productSpec;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Product product = (Product) o;
+
+        if (!name.equals(product.name)) return false;
+        if (category != product.category) return false;
+        if (!price.equals(product.price)) return false;
+        return productSpec.equals(product.productSpec);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name.hashCode();
+        result = 31 * result + category.hashCode();
+        result = 31 * result + price.hashCode();
+        result = 31 * result + productSpec.hashCode();
+        return result;
     }
 }

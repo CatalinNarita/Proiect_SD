@@ -2,15 +2,15 @@ package com.edu.control.dto.mapper;
 
 import com.edu.control.dto.CartDTO;
 import com.edu.entity.Cart;
-import com.edu.entity.Product;
+import com.edu.entity.Item;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2017-12-04T10:41:31+0200",
-    comments = "version: 1.2.0.Final, compiler: javac, environment: Java 1.8.0_152 (Oracle Corporation)"
+    date = "2017-12-04T14:34:35+0200",
+    comments = "version: 1.2.0.Final, compiler: javac, environment: Java 1.8.0_131 (Oracle Corporation)"
 )
 public class CartDTOMapperImpl implements CartDTOMapper {
 
@@ -23,12 +23,12 @@ public class CartDTOMapperImpl implements CartDTOMapper {
         CartDTO cartDTO = new CartDTO();
 
         cartDTO.setId( cart.getId() );
-        List<Product> list = cart.getProducts();
+        List<Item> list = cart.getItems();
         if ( list != null ) {
-            cartDTO.setProducts( new ArrayList<Product>( list ) );
+            cartDTO.setItems( new ArrayList<Item>( list ) );
         }
         else {
-            cartDTO.setProducts( null );
+            cartDTO.setItems( null );
         }
         cartDTO.setUser( cart.getUser() );
 
@@ -44,12 +44,12 @@ public class CartDTOMapperImpl implements CartDTOMapper {
         Cart cart = new Cart();
 
         cart.setId( cartDTO.getId() );
-        List<Product> list = cartDTO.getProducts();
+        List<Item> list = cartDTO.getItems();
         if ( list != null ) {
-            cart.setProducts( new ArrayList<Product>( list ) );
+            cart.setItems( new ArrayList<Item>( list ) );
         }
         else {
-            cart.setProducts( null );
+            cart.setItems( null );
         }
         cart.setUser( cartDTO.getUser() );
 

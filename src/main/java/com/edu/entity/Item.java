@@ -1,11 +1,15 @@
 package com.edu.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "Item.deleteItemByProductId", query = "DELETE FROM Item i WHERE i.product.id = ?")
+})
 public class Item {
 
     @Id
@@ -20,19 +24,10 @@ public class Item {
     @Column
     private Integer quantity;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinTable(name = "order_item",
-            joinColumns = {@JoinColumn(name = "id_order", nullable = false) },
-            inverseJoinColumns = {@JoinColumn(name = "id_item", nullable = false)}
-    )
-    @JsonBackReference(value = "order_ref")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "items", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private List<Order> orders;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    @JoinTable(name = "cart_item",
-            joinColumns = {@JoinColumn(name = "id_cart", nullable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "id_item", nullable = false)}
-    )
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "items", cascade = CascadeType.ALL)
     private List<Cart> carts;
 
     public Item(){}

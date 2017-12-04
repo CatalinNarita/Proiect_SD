@@ -1,16 +1,16 @@
 package com.edu.control.dto.mapper;
 
 import com.edu.control.dto.OrderDTO;
+import com.edu.entity.Item;
 import com.edu.entity.Order;
-import com.edu.entity.Product;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2017-12-04T10:42:06+0200",
-    comments = "version: 1.2.0.Final, compiler: javac, environment: Java 1.8.0_152 (Oracle Corporation)"
+    date = "2017-12-04T14:34:35+0200",
+    comments = "version: 1.2.0.Final, compiler: javac, environment: Java 1.8.0_131 (Oracle Corporation)"
 )
 public class OrderDTOMapperImpl implements OrderDTOMapper {
 
@@ -26,12 +26,12 @@ public class OrderDTOMapperImpl implements OrderDTOMapper {
         orderDTO.setAddress( order.getAddress() );
         orderDTO.setOrderDate( order.getOrderDate() );
         orderDTO.setTotalPrice( order.getTotalPrice() );
-        List<Product> list = order.getProducts();
+        List<Item> list = order.getItems();
         if ( list != null ) {
-            orderDTO.setProducts( new ArrayList<Product>( list ) );
+            orderDTO.setItems( new ArrayList<Item>( list ) );
         }
         else {
-            orderDTO.setProducts( null );
+            orderDTO.setItems( null );
         }
         orderDTO.setUser( order.getUser() );
 
@@ -51,12 +51,12 @@ public class OrderDTOMapperImpl implements OrderDTOMapper {
         order.setOrderDate( orderDTO.getOrderDate() );
         order.setTotalPrice( orderDTO.getTotalPrice() );
         order.setUser( orderDTO.getUser() );
-        List<Product> list = orderDTO.getProducts();
+        List<Item> list = orderDTO.getItems();
         if ( list != null ) {
-            order.setProducts( new ArrayList<Product>( list ) );
+            order.setItems( new ArrayList<Item>( list ) );
         }
         else {
-            order.setProducts( null );
+            order.setItems( null );
         }
 
         return order;

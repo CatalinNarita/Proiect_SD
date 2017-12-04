@@ -32,10 +32,13 @@ public class LaptopSpec implements Serializable {
     @Column
     private Double diagonal;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private ProductSpec productSpec;
+
     public LaptopSpec() {
     }
 
-    public LaptopSpec(String producer, GuaranteePeriodEnum guarantee, String processor, int ram, String videoCard, int hddCapacity, Double diagonal) {
+    public LaptopSpec(String producer, GuaranteePeriodEnum guarantee, String processor, int ram, String videoCard, int hddCapacity, Double diagonal, ProductSpec productSpec) {
         this.producer = producer;
         this.guarantee = guarantee;
         this.processor = processor;
@@ -43,6 +46,7 @@ public class LaptopSpec implements Serializable {
         this.videoCard = videoCard;
         this.hddCapacity = hddCapacity;
         this.diagonal = diagonal;
+        this.productSpec = productSpec;
     }
 
     public Long getId() {
@@ -107,5 +111,43 @@ public class LaptopSpec implements Serializable {
 
     public void setDiagonal(Double diagonal) {
         this.diagonal = diagonal;
+    }
+
+    public ProductSpec getProductSpec() {
+        return productSpec;
+    }
+
+    public void setProductSpec(ProductSpec productSpec) {
+        this.productSpec = productSpec;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        LaptopSpec that = (LaptopSpec) o;
+
+        if (ram != that.ram) return false;
+        if (hddCapacity != that.hddCapacity) return false;
+        if (!producer.equals(that.producer)) return false;
+        if (guarantee != that.guarantee) return false;
+        if (!processor.equals(that.processor)) return false;
+        if (!videoCard.equals(that.videoCard)) return false;
+        if (!diagonal.equals(that.diagonal)) return false;
+        return productSpec.equals(that.productSpec);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = producer.hashCode();
+        result = 31 * result + guarantee.hashCode();
+        result = 31 * result + processor.hashCode();
+        result = 31 * result + ram;
+        result = 31 * result + videoCard.hashCode();
+        result = 31 * result + hddCapacity;
+        result = 31 * result + diagonal.hashCode();
+        result = 31 * result + productSpec.hashCode();
+        return result;
     }
 }

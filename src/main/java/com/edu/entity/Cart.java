@@ -12,7 +12,11 @@ public class Cart implements Serializable{
     @Column
     private Long id;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "carts", cascade = CascadeType.MERGE)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @JoinTable(name = "cart_item",
+            joinColumns = {@JoinColumn(name = "id_cart", nullable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "id_item", nullable = false)}
+    )
     private List<Item> items;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
