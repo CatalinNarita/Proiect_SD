@@ -28,7 +28,7 @@ public class Order implements Serializable{
     private Double totalPrice;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "orders", cascade = CascadeType.MERGE)
-    private List<Product> products;
+    private List<Item> items;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_id")
@@ -36,12 +36,12 @@ public class Order implements Serializable{
 
     public Order(){}
 
-    public Order(String address, Timestamp orderDate, Double totalPrice, User user, List<Product> products) {
+    public Order(String address, Timestamp orderDate, Double totalPrice, List<Item> items, User user) {
         this.address = address;
         this.orderDate = orderDate;
         this.totalPrice = totalPrice;
+        this.items = items;
         this.user = user;
-        this.products = products;
     }
 
     public Long getId() {
@@ -84,11 +84,11 @@ public class Order implements Serializable{
         this.user = user;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public List<Item> getItems() {
+        return items;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 }

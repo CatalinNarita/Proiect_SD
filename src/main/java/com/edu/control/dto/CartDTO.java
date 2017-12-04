@@ -1,5 +1,6 @@
 package com.edu.control.dto;
 
+import com.edu.entity.Item;
 import com.edu.entity.Product;
 import com.edu.entity.User;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,16 +11,16 @@ public class CartDTO {
 
     private Long id;
 
-    private List<Product> products;
+    private List<Item> items;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private User user;
 
     public CartDTO(){}
 
-    public CartDTO(Long id, List<Product> products, User user) {
+    public CartDTO(Long id, List<Item> items, User user) {
         this.id = id;
-        this.products = products;
+        this.items = items;
         this.user = user;
     }
 
@@ -31,12 +32,12 @@ public class CartDTO {
         this.id = id;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public List<Item> getItems() {
+        return items;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 
     public User getUser() {

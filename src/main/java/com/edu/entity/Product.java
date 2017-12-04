@@ -27,32 +27,14 @@ public class Product implements Serializable {
     @JoinColumn(name = "product_spec_id")
     private ProductSpec productSpec;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinTable(name = "order_product",
-            joinColumns = {@JoinColumn(name = "id_order", nullable = false) },
-            inverseJoinColumns = {@JoinColumn(name = "id_product", nullable = false)}
-    )
-    @JsonBackReference(value = "order_ref")
-    private List<Order> orders;
-
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    @JoinTable(name = "cart_product",
-            joinColumns = {@JoinColumn(name = "id_cart", nullable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "id_product", nullable = false)}
-    )
-    @JsonBackReference(value = "cart_ref")
-    private List<Cart> carts;
-
     public Product() {
     }
 
-    public Product(String name, ProductCategoryEnum category, Double price, ProductSpec productSpec, List<Order> orders, List<Cart> carts) {
+    public Product(String name, ProductCategoryEnum category, Double price, ProductSpec productSpec) {
         this.name = name;
         this.category = category;
         this.price = price;
         this.productSpec = productSpec;
-        this.orders = orders;
-        this.carts = carts;
     }
 
     public Long getId() {
@@ -93,21 +75,5 @@ public class Product implements Serializable {
 
     public void setProductSpec(ProductSpec productSpec) {
         this.productSpec = productSpec;
-    }
-
-    public List<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }
-
-    public List<Cart> getCarts() {
-        return carts;
-    }
-
-    public void setCarts(List<Cart> carts) {
-        this.carts = carts;
     }
 }

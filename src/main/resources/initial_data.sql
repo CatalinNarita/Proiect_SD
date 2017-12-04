@@ -34,33 +34,49 @@ INSERT INTO order_t (address, order_date, total_price, user_id) VALUES ('Cluj-Na
 INSERT INTO order_t (address, order_date, total_price, user_id) VALUES ('Zalau nr. 212','2017-10-12 09:25:00',254.23,4);
 INSERT INTO order_t (address, order_date, total_price, user_id) VALUES ('Bucium-Sat nr. 155','2017-11-13 10:37:00',112.99,4);
 
-INSERT INTO order_product VALUES (1,1);
-INSERT INTO order_product VALUES (1,3);
-INSERT INTO order_product VALUES (2,1);
-INSERT INTO order_product VALUES (2,2);
-INSERT INTO order_product VALUES (3,3);
-INSERT INTO order_product VALUES (3,4);
-INSERT INTO order_product VALUES (4,5);
-INSERT INTO order_product VALUES (5,2);
-
 INSERT INTO cart (user_id) VALUES (1);
 INSERT INTO cart (user_id) VALUES (2);
 INSERT INTO cart (user_id) VALUES (3);
 INSERT INTO cart (user_id) VALUES (4);
 INSERT INTO cart (user_id) VALUES (5);
 
-INSERT INTO cart_product (id_cart, id_product) VALUES (1,1);
-INSERT INTO cart_product (id_cart, id_product) VALUES (1,2);
-INSERT INTO cart_product (id_cart, id_product) VALUES (1,3);
-INSERT INTO cart_product (id_cart, id_product) VALUES (1,4);
-INSERT INTO cart_product (id_cart, id_product) VALUES (1,5);
-INSERT INTO cart_product (id_cart, id_product) VALUES (2,1);
-INSERT INTO cart_product (id_cart, id_product) VALUES (2,2);
-INSERT INTO cart_product (id_cart, id_product) VALUES (3,3);
-INSERT INTO cart_product (id_cart, id_product) VALUES (3,1);
-INSERT INTO cart_product (id_cart, id_product) VALUES (4,2);
-INSERT INTO cart_product (id_cart, id_product) VALUES (5,4);
-INSERT INTO cart_product (id_cart, id_product) VALUES (5,1);
+INSERT INTO item (quantity, product_id) VALUES (1,1);
+INSERT INTO item (quantity, product_id) VALUES (2,2);
+INSERT INTO item (quantity, product_id) VALUES (3,3);
+INSERT INTO item (quantity, product_id) VALUES (1,4);
+INSERT INTO item (quantity, product_id) VALUES (2,5);
+INSERT INTO item (quantity, product_id) VALUES (3,1);
+INSERT INTO item (quantity, product_id) VALUES (1,2);
+INSERT INTO item (quantity, product_id) VALUES (2,3);
+INSERT INTO item (quantity, product_id) VALUES (1,4);
+INSERT INTO item (quantity, product_id) VALUES (2,5);
 
+INSERT INTO order_item (id_order, id_item) VALUES (1,1);
+INSERT INTO order_item (id_order, id_item) VALUES (1,2);
+INSERT INTO order_item (id_order, id_item) VALUES (1,3);
+INSERT INTO order_item (id_order, id_item) VALUES (2,1);
+INSERT INTO order_item (id_order, id_item) VALUES (2,2);
+INSERT INTO order_item (id_order, id_item) VALUES (2,3);
+INSERT INTO order_item (id_order, id_item) VALUES (3,3);
+INSERT INTO order_item (id_order, id_item) VALUES (3,2);
+INSERT INTO order_item (id_order, id_item) VALUES (3,1);
+INSERT INTO order_item (id_order, id_item) VALUES (4,1);
+INSERT INTO order_item (id_order, id_item) VALUES (5,3);
+
+INSERT INTO cart_item (id_cart, id_item) VALUES (1,1);
+INSERT INTO cart_item (id_cart, id_item) VALUES (2,1);
+INSERT INTO cart_item (id_cart, id_item) VALUES (2,2);
+INSERT INTO cart_item (id_cart, id_item) VALUES (3,1);
+INSERT INTO cart_item (id_cart, id_item) VALUES (3,2);
+INSERT INTO cart_item (id_cart, id_item) VALUES (3,3);
+INSERT INTO cart_item (id_cart, id_item) VALUES (4,1);
+INSERT INTO cart_item (id_cart, id_item) VALUES (4,2);
+INSERT INTO cart_item (id_cart, id_item) VALUES (4,3);
+INSERT INTO cart_item (id_cart, id_item) VALUES (4,4);
+INSERT INTO cart_item (id_cart, id_item) VALUES (5,1);
+INSERT INTO cart_item (id_cart, id_item) VALUES (5,2);
+INSERT INTO cart_item (id_cart, id_item) VALUES (5,3);
+INSERT INTO cart_item (id_cart, id_item) VALUES (5,4);
+INSERT INTO cart_item (id_cart, id_item) VALUES (5,5);
 
 

@@ -12,8 +12,8 @@ public class Cart implements Serializable{
     @Column
     private Long id;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "carts")
-    private List<Product> products;
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "carts", cascade = CascadeType.MERGE)
+    private List<Item> items;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @MapsId
@@ -21,8 +21,8 @@ public class Cart implements Serializable{
 
     public Cart(){}
 
-    public Cart(List<Product> products, User user) {
-        this.products = products;
+    public Cart(List<Item> items, User user) {
+        this.items = items;
         this.user = user;
     }
 
@@ -34,12 +34,12 @@ public class Cart implements Serializable{
         this.id = id;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public List<Item> getItems() {
+        return items;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 
     public User getUser() {

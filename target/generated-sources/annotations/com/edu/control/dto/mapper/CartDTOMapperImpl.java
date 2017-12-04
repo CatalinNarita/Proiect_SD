@@ -9,8 +9,8 @@ import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2017-12-03T18:51:46+0200",
-    comments = "version: 1.2.0.Final, compiler: javac, environment: Java 1.8.0_151 (Oracle Corporation)"
+    date = "2017-12-04T10:41:31+0200",
+    comments = "version: 1.2.0.Final, compiler: javac, environment: Java 1.8.0_152 (Oracle Corporation)"
 )
 public class CartDTOMapperImpl implements CartDTOMapper {
 
