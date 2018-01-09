@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
+@NamedQuery(name = "User.getUserByUsername", query = "SELECT u FROM User u where u.username = ?")
 public class User implements Serializable {
 
     @Id

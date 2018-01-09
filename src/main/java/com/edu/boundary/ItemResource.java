@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/item")
+@CrossOrigin
 public class ItemResource {
 
     @Autowired

@@ -26,8 +26,8 @@ public class CartService {
         return mapper.mapToDto(cartDAO.findOne(id));
     }
 
-    public void updateCart(CartDTO cartDTO) {
-        Cart cart = cartDAO.findOne(cartDTO.getId());
+    public void updateCart(Long id, CartDTO cartDTO) {
+        Cart cart = cartDAO.findOne(id);
 
         cart.setItems(cartDTO.getItems());
     }

@@ -24,20 +24,20 @@ public class Item {
     @Column
     private Integer quantity;
 
-    /*@ManyToMany(fetch = FetchType.LAZY, mappedBy = "items", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JsonManagedReference
-    private List<Order> orders;*/
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "items", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JsonBackReference(value = "order_ref")
+    private List<Order> orders;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "items", cascade = CascadeType.ALL)
-    @JsonBackReference
+    @JsonBackReference(value = "cart_ref")
     private List<Cart> carts;
 
     public Item(){}
 
-    public Item(Product product, Integer quantity/*, List<Order> orders*/, List<Cart> carts) {
+    public Item(Product product, Integer quantity, List<Order> orders, List<Cart> carts) {
         this.product = product;
         this.quantity = quantity;
-        //this.orders = orders;
+        this.orders = orders;
         this.carts = carts;
     }
 
@@ -57,13 +57,13 @@ public class Item {
         this.product = product;
     }
 
-    /*public List<Order> getOrders() {
+    public List<Order> getOrders() {
         return orders;
     }
 
     public void setOrders(List<Order> orders) {
         this.orders = orders;
-    }*/
+    }
 
     public List<Cart> getCarts() {
         return carts;

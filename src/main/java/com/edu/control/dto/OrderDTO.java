@@ -19,19 +19,19 @@ public class OrderDTO {
 
     private Double totalPrice;
 
-    //private List<Item> items;
+    private List<Item> items;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private User user;
 
     public OrderDTO(){}
 
-    public OrderDTO(Long id, String address, Timestamp orderDate, Double totalPrice/*, List<Item> items*/, User user) {
+    public OrderDTO(Long id, String address, Timestamp orderDate, Double totalPrice, List<Item> items, User user) {
         this.id = id;
         this.address = address;
         this.orderDate = orderDate;
         this.totalPrice = totalPrice;
-        //this.items = items;
+        this.items = items;
         this.user = user;
     }
 
@@ -67,13 +67,13 @@ public class OrderDTO {
         this.totalPrice = totalPrice;
     }
 
-    /*public List<Item> getItems() {
+    public List<Item> getItems() {
         return items;
     }
 
     public void setItems(List<Item> items) {
         this.items = items;
-    }*/
+    }
 
     public User getUser() {
         return user;

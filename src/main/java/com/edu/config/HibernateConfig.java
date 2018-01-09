@@ -57,7 +57,7 @@ public class HibernateConfig {
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/ds_project?createDatabaseIfNotExist=true");
         dataSource.setUsername("root");
-        dataSource.setPassword("admin");
+        dataSource.setPassword("");
         return dataSource;
     }
 

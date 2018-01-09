@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin
 public class UserResource {
 
     @Autowired
@@ -19,6 +20,11 @@ public class UserResource {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public UserDTO getUserById(@PathVariable("id") Long id) {
         return userService.findById(id);
+    }
+
+    @RequestMapping(value = "/get/{username}", method = RequestMethod.GET)
+    public UserDTO getUserByUsername(@PathVariable("username") String username) {
+        return userService.getUserByUsername(username);
     }
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)

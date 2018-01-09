@@ -50,6 +50,7 @@
             <artifactId>mapstruct-processor</artifactId>
             <version>1.2.0.Final</version>
         </dependency>
+
     </dependencies>
 
     <build>

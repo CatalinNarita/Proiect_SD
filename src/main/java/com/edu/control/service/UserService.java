@@ -1,6 +1,7 @@
 package com.edu.control.service;
 
 import com.edu.control.dao.CartDAO;
+import com.edu.control.dao.RoleDAO;
 import com.edu.control.dao.UserDAO;
 import com.edu.control.dto.CartDTO;
 import com.edu.control.dto.OrderDTO;
@@ -8,6 +9,7 @@ import com.edu.control.dto.UserDTO;
 import com.edu.control.dto.mapper.OrderDTOMapper;
 import com.edu.control.dto.mapper.UserDTOMapper;
 import com.edu.entity.Cart;
+import com.edu.entity.Role;
 import com.edu.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,9 @@ public class UserService {
 
     @Autowired
     private CartDAO cartDAO;
+
+    @Autowired
+    private RoleDAO roleDAO;
 
     private UserDTOMapper userMapper = UserDTOMapper.INSTANCE;
 
@@ -49,7 +54,11 @@ public class UserService {
         Cart cart = new Cart();
         cart.setUser(user);
 
+        Role role = new Role("ROLE_USER");
+        role.setUser(user);
+
         userDAO.save(user);
+        roleDAO.save(role);
         cartDAO.save(cart);
     }
 
@@ -70,6 +79,11 @@ public class UserService {
                 .stream()
                 .map(order -> orderMapper.mapToDto(order))
                 .collect(Collectors.toList());
+    }
+
+    public UserDTO getUserByUsername(String username) {
+        UserDTO userDTO = userMapper.mapToDTO(userDAO.getUserByUsername(username));
+        return userDTO;
     }
 
 }

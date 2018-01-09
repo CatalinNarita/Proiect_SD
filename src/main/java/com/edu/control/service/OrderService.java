@@ -1,9 +1,13 @@
 package com.edu.control.service;
 
 import com.edu.control.dao.OrderDAO;
+import com.edu.control.dao.UserDAO;
 import com.edu.control.dto.OrderDTO;
+import com.edu.control.dto.mapper.ItemDTOMapper;
 import com.edu.control.dto.mapper.OrderDTOMapper;
+import com.edu.entity.Item;
 import com.edu.entity.Order;
+import com.edu.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,10 +22,13 @@ public class OrderService {
     @Autowired
     private OrderDAO orderDAO;
 
+    @Autowired
+    private UserDAO userDAO;
+
     private OrderDTOMapper mapper = OrderDTOMapper.INSTANCE;
 
     public OrderDTO getOrderById(Long id) {
-        //Order order = orderDAO.findOne(id);
+        Order order = orderDAO.findOne(id);
         return mapper.mapToDto(orderDAO.findOne(id));
     }
 
@@ -32,8 +39,12 @@ public class OrderService {
                 .collect(Collectors.toList());
     }
 
-    public void addOrder(OrderDTO orderDTO) {
-        orderDAO.save(mapper.mapToEntity(orderDTO));
+    public void addOrder(Long userId, OrderDTO orderDTO) {
+        User user = userDAO.findOne(userId);
+        OrderDTO newOrder = orderDTO;
+        newOrder.setUser(user);
+        newOrder.setItems(null);
+        orderDAO.save(mapper.mapToEntity(newOrder));
     }
 
     public void updateOrder(OrderDTO orderDTO) {

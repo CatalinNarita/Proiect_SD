@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/cart")
+@CrossOrigin
 public class CartResource {
 
     @Autowired
@@ -17,8 +18,8 @@ public class CartResource {
         return cartService.getCartById(id);
     }
 
-    @RequestMapping(value = "/updateCart", method = RequestMethod.PUT)
-    public void updateCart(@RequestBody CartDTO cartDTO) {
-        cartService.updateCart(cartDTO);
+    @RequestMapping(value = "/{id}/addItem", method = RequestMethod.PUT)
+    public void updateCart(@RequestBody CartDTO cartDTO, @PathVariable("id") Long id) {
+        cartService.updateCart(id,cartDTO);
     }
 }

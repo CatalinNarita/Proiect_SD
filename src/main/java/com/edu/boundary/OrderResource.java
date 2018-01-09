@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/order")
+@CrossOrigin
 public class OrderResource {
 
     @Autowired
@@ -25,9 +26,9 @@ public class OrderResource {
         return orderService.getAllOrders();
     }
 
-    @RequestMapping(value = "/addOrder", method = RequestMethod.POST)
-    public void addOrder(@RequestBody OrderDTO orderDTO) {
-        orderService.addOrder(orderDTO);
+    @RequestMapping(value = "/{userId}/addOrder", method = RequestMethod.POST)
+    public void addOrder(@RequestBody OrderDTO orderDTO, @PathVariable("userId") Long userId) {
+        orderService.addOrder(userId, orderDTO);
     }
 
     @RequestMapping(value = "/updateOrder", method = RequestMethod.PUT)
