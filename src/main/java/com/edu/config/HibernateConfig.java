@@ -42,7 +42,7 @@ public class HibernateConfig {
 
     private Properties jpaProperties() {
         Properties properties = new Properties();
-        properties.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+        properties.put("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
         properties.put("hibernate.hbm2ddl.auto", "create-drop");
         properties.put("hibernate.show_sql", "true");
         properties.put("spring.jpa.format-sql", "true");
@@ -53,11 +53,23 @@ public class HibernateConfig {
 
     @Bean
     public DataSource dataSource() {
+
+//        String username = "root";
+//        String password = "admin";
+        String databaseName = "my_db";
+        String instanceConnectionName = "double-vision-198512:europe-west3:test-db";
+
+        String jdbcUrl = String.format(
+                "jdbc:mysql://google/%s?cloudSqlInstance=%s&"
+                        + "socketFactory=com.google.cloud.sql.mysql.SocketFactory",
+                databaseName,
+                instanceConnectionName);
+
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/ds_project?createDatabaseIfNotExist=true");
+        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        dataSource.setUrl(jdbcUrl);
         dataSource.setUsername("root");
-        dataSource.setPassword("");
+        dataSource.setPassword("admin");
         return dataSource;
     }
 

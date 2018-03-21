@@ -1,11 +1,14 @@
 package com.edu.control.service;
 
 import com.edu.control.dao.CartDAO;
+import com.edu.control.dao.ItemHistoryDAO;
 import com.edu.control.dao.RoleDAO;
 import com.edu.control.dao.UserDAO;
 import com.edu.control.dto.CartDTO;
+import com.edu.control.dto.ItemHistoryDTO;
 import com.edu.control.dto.OrderDTO;
 import com.edu.control.dto.UserDTO;
+import com.edu.control.dto.mapper.ItemHistoryDTOMapper;
 import com.edu.control.dto.mapper.OrderDTOMapper;
 import com.edu.control.dto.mapper.UserDTOMapper;
 import com.edu.entity.Cart;
@@ -15,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,9 +35,14 @@ public class UserService {
     @Autowired
     private RoleDAO roleDAO;
 
+    @Autowired
+    private ItemHistoryDAO itemHistoryDAO;
+
     private UserDTOMapper userMapper = UserDTOMapper.INSTANCE;
 
     private OrderDTOMapper orderMapper = OrderDTOMapper.INSTANCE;
+
+    private ItemHistoryDTOMapper itemHistoryDTOMapper = ItemHistoryDTOMapper.INSTANCE;
 
     public UserDTO findById(Long id) {
         return userMapper.mapToDTO(userDAO.findOne(id));
@@ -74,16 +83,30 @@ public class UserService {
         userDAO.delete(id);
     }
 
-    public List<OrderDTO> getUserOrders(Long id) {
-        return userDAO.findOne(id).getOrders()
-                .stream()
-                .map(order -> orderMapper.mapToDto(order))
-                .collect(Collectors.toList());
-    }
+//    public List<OrderDTO> getUserOrders(Long id) {
+//        return userDAO.findOne(id).getOrders()
+//                .stream()
+//                .map(order -> orderMapper.mapToDto(order))
+//                .collect(Collectors.toList());
+//    }
 
     public UserDTO getUserByUsername(String username) {
         UserDTO userDTO = userMapper.mapToDTO(userDAO.getUserByUsername(username));
         return userDTO;
+    }
+
+    public UserDTO getUserByEmail(String email) {
+        return userMapper.mapToDTO(userDAO.getUserByEmail(email));
+    }
+
+    public List<ItemHistoryDTO> getUserOrders(Long id) {
+        return itemHistoryDAO.getItemHistoryByUserId(id).stream()
+                .map(itemHistory -> itemHistoryDTOMapper.mapToDto(itemHistory))
+                .collect(Collectors.toList());
+    }
+
+    public UserDTO getUserByNfcTag(String nfcTag) {
+        return userMapper.mapToDTO(userDAO.getUserByNfcTag(nfcTag));
     }
 
 }

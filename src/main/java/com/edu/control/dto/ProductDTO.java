@@ -16,15 +16,18 @@ public class ProductDTO {
 
     private ProductSpec productSpec;
 
+    private int quantity;
+
     public ProductDTO() {
     }
 
-    public ProductDTO(Long id, String name, ProductCategoryEnum category, Double price, ProductSpec productSpec) {
+    public ProductDTO(Long id, String name, ProductCategoryEnum category, Double price, int quantity, ProductSpec productSpec) {
         this.id = id;
         this.name = name;
         this.category = category;
         this.price = price;
         this.productSpec = productSpec;
+        this.quantity = quantity;
     }
 
     public Long getId() {
@@ -65,5 +68,13 @@ public class ProductDTO {
 
     public void setProductSpec(ProductSpec productSpec) {
         this.productSpec = productSpec;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

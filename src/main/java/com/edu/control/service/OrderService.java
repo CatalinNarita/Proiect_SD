@@ -40,11 +40,11 @@ public class OrderService {
     }
 
     public void addOrder(Long userId, OrderDTO orderDTO) {
-        User user = userDAO.findOne(userId);
+       /* User user = userDAO.findOne(userId);
         OrderDTO newOrder = orderDTO;
         newOrder.setUser(user);
         newOrder.setItems(null);
-        orderDAO.save(mapper.mapToEntity(newOrder));
+        orderDAO.save(mapper.mapToEntity(newOrder));*/
     }
 
     public void updateOrder(OrderDTO orderDTO) {

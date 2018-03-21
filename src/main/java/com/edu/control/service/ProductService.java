@@ -55,6 +55,7 @@ public class ProductService {
 
         product.setName(productDTO.getName());
         product.setPrice(productDTO.getPrice());
+        product.setQuantity(productDTO.getQuantity());
     }
 
     public void deleteProduct(Long id) {

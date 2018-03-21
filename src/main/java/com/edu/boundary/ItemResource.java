@@ -1,6 +1,7 @@
 package com.edu.boundary;
 
 import com.edu.control.dto.ItemDTO;
+import com.edu.control.dto.ProductDTO;
 import com.edu.control.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -9,4 +9,8 @@ public interface UserDAO extends JpaRepository<User, Long> {
 
     User getUserByUsername(String username);
 
+    User getUserByEmail(String email);
+
+    User getUserByNfcTag(String nfcTag);
+
 }

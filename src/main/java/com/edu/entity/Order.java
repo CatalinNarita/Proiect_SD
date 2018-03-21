@@ -37,6 +37,7 @@ public class Order implements Serializable{
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_id")
+    @JsonBackReference
     private User user;
 
     public Order(){}

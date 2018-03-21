@@ -8,7 +8,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
-@Mapper(uses = ProductSpec.class)
+@Mapper
 public interface ProductDTOMapper {
 
     ProductDTOMapper INSTANCE = Mappers.getMapper(ProductDTOMapper.class);

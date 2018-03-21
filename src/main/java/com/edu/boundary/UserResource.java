@@ -1,5 +1,6 @@
 package com.edu.boundary;
 
+import com.edu.control.dto.ItemHistoryDTO;
 import com.edu.control.dto.OrderDTO;
 import com.edu.control.dto.UserDTO;
 import com.edu.control.service.OrderService;
@@ -48,8 +49,19 @@ public class UserResource {
     }
 
     @RequestMapping(value = "/{id}/orders", method = RequestMethod.GET)
-    public List<OrderDTO> getOrdersByUserId(@PathVariable("id") Long id) {
+    public List<ItemHistoryDTO> getOrdersByUserId(@PathVariable("id") Long id) {
         return userService.getUserOrders(id);
     }
+
+    @RequestMapping(value = "/getByEmail/{email:.+}", method = RequestMethod.GET)
+    public UserDTO getUserByEmail(@PathVariable("email") String email) {
+        return userService.getUserByEmail(email);
+    }
+
+    @RequestMapping(value = "/getByNfcTag/{nfcTag}", method = RequestMethod.GET)
+    public UserDTO getUserByNfcTag(@PathVariable("nfcTag") String tagId) {
+        return userService.getUserByNfcTag(tagId);
+    }
+
 
 }

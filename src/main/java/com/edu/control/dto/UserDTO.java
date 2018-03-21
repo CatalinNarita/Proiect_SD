@@ -1,5 +1,10 @@
 package com.edu.control.dto;
 
+import com.edu.entity.Cart;
+import com.edu.entity.Order;
+
+import java.util.List;
+
 public class UserDTO {
 
     private Long id;
@@ -16,10 +21,16 @@ public class UserDTO {
 
     private String address;
 
+    private List<Order> orders;
+
+    private Cart cart;
+
+    private String nfcTag;
+
     public UserDTO() {
     }
 
-    public UserDTO(Long id, String username, String password, String firstName, String lastName, String email, String address) {
+    public UserDTO(Long id, String username, String password, String firstName, String lastName, String email, String address, List<Order> orders, Cart cart, String nfcTag) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -27,6 +38,9 @@ public class UserDTO {
         this.lastName = lastName;
         this.email = email;
         this.address = address;
+        this.orders = orders;
+        this.cart = cart;
+        this.nfcTag = nfcTag;
     }
 
     public Long getId() {
@@ -83,5 +97,21 @@ public class UserDTO {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
+    public String getNfcTag() {
+        return nfcTag;
+    }
+
+    public void setNfcTag(String nfcTag) {
+        this.nfcTag = nfcTag;
     }
 }

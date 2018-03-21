@@ -1,13 +1,19 @@
 package com.edu.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@NamedQuery(name = "User.getUserByUsername", query = "SELECT u FROM User u where u.username = ?")
+@NamedQueries({
+        @NamedQuery(name = "User.getUserByUsername", query = "SELECT u FROM User u where u.username = ?"),
+        @NamedQuery(name = "User.getUserByEmail", query = "SELECT u FROM User u where u.email = ?"),
+        @NamedQuery(name = "User.getUserByNfcTag", query = "SELECT u FROM User u where u.nfcTag = ?")
+})
+
 public class User implements Serializable {
 
     @Id
@@ -32,17 +38,22 @@ public class User implements Serializable {
 
     @Column
     private String address;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Order> orders;
 
     @OneToOne(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonManagedReference
     private Cart cart;
+
+    @Column
+    private String nfcTag;
 
     public User() {
     }
 
-    public User(String username, String password, String firstName, String lastName, String email, String address, List<Order> orders, Cart cart) {
+    public User(String username, String password, String firstName, String lastName, String email, String address, List<Order> orders, Cart cart, String nfcTag) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
@@ -51,6 +62,7 @@ public class User implements Serializable {
         this.address = address;
         this.orders = orders;
         this.cart = cart;
+        this.nfcTag = nfcTag;
     }
 
     public Long getId() {
@@ -123,5 +135,13 @@ public class User implements Serializable {
 
     public void setCart(Cart cart) {
         this.cart = cart;
+    }
+
+    public String getNfcTag() {
+        return nfcTag;
+    }
+
+    public void setNfcTag(String nfcTag) {
+        this.nfcTag = nfcTag;
     }
 }

@@ -1,6 +1,7 @@
 package com.edu.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -23,6 +24,9 @@ public class Product implements Serializable {
     @Column
     private Double price;
 
+    @Column
+    private int quantity;
+
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "product_spec_id", referencedColumnName = "id")
     private ProductSpec productSpec;
@@ -30,10 +34,11 @@ public class Product implements Serializable {
     public Product() {
     }
 
-    public Product(String name, ProductCategoryEnum category, Double price, ProductSpec productSpec) {
+    public Product(String name, ProductCategoryEnum category, Double price, int quantity, ProductSpec productSpec) {
         this.name = name;
         this.category = category;
         this.price = price;
+        this.quantity = quantity;
         this.productSpec = productSpec;
     }
 
@@ -75,6 +80,14 @@ public class Product implements Serializable {
 
     public void setProductSpec(ProductSpec productSpec) {
         this.productSpec = productSpec;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     @Override

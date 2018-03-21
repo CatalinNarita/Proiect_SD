@@ -1,14 +1,14 @@
 package com.edu.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "Item.deleteItemByProductId", query = "DELETE FROM Item i WHERE i.product.id = ?")
+        @NamedQuery(name = "Item.deleteItemByProductId", query = "DELETE FROM Item i WHERE i.product.id = ?"),
+        @NamedQuery(name = "Item.getItemByProductIdAndCartId", query = "SELECT i FROM Item i where i.product.id = ? AND i.cart.id = ?")
 })
 public class Item {
 
@@ -25,20 +25,20 @@ public class Item {
     private Integer quantity;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "items", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JsonBackReference(value = "order_ref")
     private List<Order> orders;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "items", cascade = CascadeType.ALL)
-    @JsonBackReference(value = "cart_ref")
-    private List<Cart> carts;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "cart_id")
+    @JsonBackReference
+    private Cart cart;
 
     public Item(){}
 
-    public Item(Product product, Integer quantity, List<Order> orders, List<Cart> carts) {
+    public Item(Product product, Integer quantity, List<Order> orders, Cart cart) {
         this.product = product;
         this.quantity = quantity;
         this.orders = orders;
-        this.carts = carts;
+        this.cart = cart;
     }
 
     public Long getId() {
@@ -65,12 +65,12 @@ public class Item {
         this.orders = orders;
     }
 
-    public List<Cart> getCarts() {
-        return carts;
+    public Cart getCart() {
+        return cart;
     }
 
-    public void setCarts(List<Cart> carts) {
-        this.carts = carts;
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 
     public Integer getQuantity() {

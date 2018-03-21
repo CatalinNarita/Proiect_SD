@@ -1,5 +1,6 @@
 package com.edu.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -14,15 +15,13 @@ public class Cart implements Serializable{
     @Column
     private Long id;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    @JoinTable(name = "cart_item",
-            joinColumns = {@JoinColumn(name = "id_cart", nullable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "id_item", nullable = false)}
-    )
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Item> items;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @MapsId
+    @JsonBackReference
     private User user;
 
     public Cart(){}
